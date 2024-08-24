@@ -9,7 +9,8 @@ typedef union
 
 int main()
 {
-    quantity q = {3};
-    printf("I have %i oranges", q.count);
+    quantity q;
+    q.weight = 50;
+    printf("I have %.1f kilos oranges", q.weight);
     return 0;
 }
