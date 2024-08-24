@@ -9,21 +9,16 @@ typedef union
 
 typedef struct 
 {
-    const char* color;
-    int gears;
-    int height;
-} bike;
+    const char* name;
+    const char* country;
+    quantity amount;
+} fruit_order;
 
 
 int main()
 {
-    // Dot Notation
-    quantity q;
-    q.weight = 50;
-    printf("I have %.1f kilos oranges\n", q.weight);
+    fruit_order apples = {"Apples", "England", .amount.weight=50.0};
+    printf("This order contains %2.2f lbs of %s\n", apples.amount.weight, apples.name);
 
-    // Designated initializers
-    bike b = {.gears=5, .color="blue"};
-    printf("My %s bike has %i gears\n", b.color, b.gears);
     return 0;
 }
