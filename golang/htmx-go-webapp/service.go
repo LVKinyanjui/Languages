@@ -15,6 +15,7 @@ type ToDo struct {
 
 var DB *sql.DB
 
+
 func InitDatabase() {
 	var err error
 	DB, err = sql.Open("sqlite3", "./awesome.db")
