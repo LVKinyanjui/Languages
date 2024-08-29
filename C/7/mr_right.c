@@ -40,19 +40,9 @@ void find(int (*match)(char*))
 
 int main() 
 {
-    // Creating pointers to funcions
-    int (*sports_no_bieber_fn) (char*);
-    sports_no_bieber_fn = sports_no_bieber;
-
-    int (*sports_or_workout_fn) (char*);
-    sports_or_workout_fn = sports_or_workout;
-
-    int (*arts_theater_or_dining_fn) (char *);
-    arts_theater_or_dining_fn = arts_theater_or_dining;
-
-    find(sports_no_bieber_fn);
-    find(sports_or_workout_fn);
-    find(arts_theater_or_dining_fn);
+    find(sports_no_bieber);
+    find(sports_or_workout);
+    find(arts_theater_or_dining);
 
     return 0;
 }
