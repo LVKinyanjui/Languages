@@ -3,8 +3,9 @@
 
 int main()
 {
-    char msg[80];
-    while (fgets(msg, 80, stdin)) {
+    int char_length = 80;
+    char msg[char_length];
+    while (fgets(msg, char_length, stdin)) {
         encrypt(msg);
         printf("%s", msg);
     }
