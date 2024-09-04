@@ -6,4 +6,3 @@ encrypt.o: encrypt.c encrypt.h
 
 message_hider: message_hider.o encrypt.o
 	gcc message_hider.o encrypt.o -o message_hider
-
