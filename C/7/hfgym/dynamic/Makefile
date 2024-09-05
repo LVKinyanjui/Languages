@@ -3,7 +3,6 @@ hfcal.o: ../hfcal.h ../hfcal.c
 
 libhfcal: hfcal.o
 	gcc -shared hfcal.o -o ../../lib/libhfcal.so
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../lib
 
 elliptical.o : ../elliptical.c
 	gcc -c ../elliptical.c -o elliptical.o
