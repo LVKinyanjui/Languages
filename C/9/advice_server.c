@@ -1,9 +1,26 @@
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+
+void handle_interrupt(int sig)
+{
+    puts("Server closed.");
+    exit(1);                // Very important
+}
+
+int catch_signal(int sig, void (*handler)(int))
+{
+    struct sigaction action;
+    action.sa_handler = handler;
+    sigemptyset(&action.sa_mask);
+    action.sa_flags = 0;
+
+    return sigaction(sig, &action, NULL);
+}
 
 int main(int argc, char *argv[]) {
     char *advice[] = {
@@ -46,6 +63,10 @@ int main(int argc, char *argv[]) {
     }
 
     puts("Waiting for connection");
+
+    // Set up interrupt signal catching Ctrl + C
+    // Optional
+    catch_signal(SIGINT, handle_interrupt);
 
     // Loop to accept and handle connections
     while (1) {
