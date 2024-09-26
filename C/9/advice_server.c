@@ -6,9 +6,14 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
+int listener_d;
+
 void handle_interrupt(int sig)
 {
-    puts("Server closed.");
+    if (listener_d)
+        close(listener_d);
+
+    perror("Server closed. Byw!");
     exit(1);                // Very important
 }
 
