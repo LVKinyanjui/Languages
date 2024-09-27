@@ -138,34 +138,39 @@ int main(int argc, char *argv[]) {
         if (connect_d == -1)
             error("Can't open secondary socket");
 
-        // Send greeting message to the client
-        if (say(connect_d, "Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n> ") != -1) {
-            // Read client's response
-            read_in(connect_d, buf, sizeof(buf));
+        int pid = fork();
+        if (!pid){
+            close(listener_d);
+            // Send greeting message to the client
+            if (say(connect_d, "Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n> ") != -1) {
+                // Read client's response
+                read_in(connect_d, buf, sizeof(buf));
 
-            // Check if client asked "Who's there?"
-            if (strncasecmp("Who's there?", buf, 12)) {
-                say(connect_d, "You should say 'Who's there?'!\r\n");
-            } else {
-                // Send second knock-knock joke line
-                if (say(connect_d, "Oscar\r\n> ") != -1) {
-                    // Read client's response
-                    read_in(connect_d, buf, sizeof(buf));
+                // Check if client asked "Who's there?"
+                if (strncasecmp("Who's there?", buf, 12)) {
+                    say(connect_d, "You should say 'Who's there?'!\r\n");
+                } else {
+                    // Send second knock-knock joke line
+                    if (say(connect_d, "Oscar\r\n> ") != -1) {
+                        // Read client's response
+                        read_in(connect_d, buf, sizeof(buf));
 
-                    // Check if client asked "Oscar who?"
-                    if (strncasecmp("Oscar who?", buf, 10)) {
-                        say(connect_d, "You should say 'Oscar who?'!\r\n");
-                    } else {
-                        // Send punchline
-                        say(connect_d, "Oscar silly question, you get a silly answer!\r\n");
+                        // Check if client asked "Oscar who?"
+                        if (strncasecmp("Oscar who?", buf, 10)) {
+                            say(connect_d, "You should say 'Oscar who?'!\r\n");
+                        } else {
+                            // Send punchline
+                            say(connect_d, "Oscar silly question, you get a silly answer!\r\n");
+                        }
                     }
                 }
             }
+
+            // Close the connection with the client
+            close(connect_d);
+            exit(0);
         }
-
-        // Close the connection with the client
         close(connect_d);
-    }
-
+}
     return 0;
 }
