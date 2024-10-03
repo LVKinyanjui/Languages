@@ -19,6 +19,7 @@ void* does_not(void *a)
 {
     int i = 0;
     for (i = 0; i < 5; i++) {
+        // Necessary to ensure the other function has time to return
         sleep(1);
         puts("Does not!");
     }
@@ -29,6 +30,7 @@ void* does_too(void *a)
 {
     int i = 0;
     for (i = 0; i < 5; i++) {
+        // Necessary to ensure the other function has time to return
         sleep(1);
         puts("Does too!");
     }
