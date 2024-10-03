@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <pthread.h>
 
+// Thread functions accept only one void* type parameter
+// long values can be stored in void pointers
+// because they are the same size.
 void* do_stuff(void* param)
 {
     long thread_no = (long)param;
