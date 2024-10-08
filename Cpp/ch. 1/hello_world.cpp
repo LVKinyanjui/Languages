@@ -1,6 +1,7 @@
 #include <cstdio>
 
 int main() {
-    printf("Hello, world!");
+    int number = 1;
+    printf("Hello, number %d", number);
     return 0;
 }
