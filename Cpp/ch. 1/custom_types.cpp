@@ -78,14 +78,15 @@ int main()
         }
     }
 
+    // DESIGNATED INITIALIZER
     Book my_book = {.name="Things Fall Apart", .author="Chinua Achebe", .year=1958};
     printf("My chosen book is: %s by %s \n", my_book.name, my_book.author);
 
     Variant v;
-    v.floating_point = 2.1782818284;
+    v.floating_point = 2.1782818284;        // Dot Notation
     printf("Euler's number e: %f\n", v.floating_point);
 
-    v.integer = 42;
+    v.integer = 42;         // Dot Notation
     printf("The most common random seed is : %d\n", v.integer);
 
     Clock clock { 2024 };
