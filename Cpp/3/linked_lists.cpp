@@ -24,7 +24,7 @@ int main() {
     trooper3.prefix[1] = 'S';
     trooper3.operating_number = 005;
 
-    for (Element *cursor=&trooper1; cursor; cursor = cursor->next) {
+    for (Element *cursor=&trooper1; /*Ensures not nullptr*/cursor; cursor = cursor->next) {
         printf("Stormtrooper %c%c-%d\n",
             cursor->prefix[0],
             cursor->prefix[1],
